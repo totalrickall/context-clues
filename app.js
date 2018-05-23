@@ -7,11 +7,23 @@ var weapons = ['glock', 'golf club', 'AK-47', 'tennis racket', 'lamp', 'toilet s
 
 document.addEventListener('DOMContentLoaded', () => {
     for (i = 1; i < 101; i++) {
-        console.log(i);
-
         var h3 = document.createElement('h3');
-        var h3Text = document.createTextNode(`Accusation ${i}`);
-        h3.appendChild(h3Text);
+        h3.innerText = `Accusation ${i}`;
         document.body.appendChild(h3);
+        
+        // bind the arrays to a set
+        var set = {
+            num: i,
+            friends: friends[Math.floor(Math.random() * friends.length)],
+            locations: locations[Math.floor(Math.random() * locations.length)],
+            weapons: weapons[Math.floor(Math.random() * weapons.length)]
+        };
+        //console.log(set);
+        h3.addEventListener('click', setter.bind(set));
     };
 });
+
+////////////////////
+function setter() {
+    alert(`Accusation ${this.num}: I accuse ${this.friends}, with the ${this.weapons} in ${this.locations}!`)
+}
